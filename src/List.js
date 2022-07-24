@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 
+/**
+ * A component that renders an array of objects and handles adding, removing, and 
+ * passing state updates for its children. The component to be used to render is injected 
+ * as a property 
+ */
 export default class List extends Component {
   constructor(props) {
     super(props);

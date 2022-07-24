@@ -13,7 +13,7 @@ export default class Header extends Component {
   }
 
   updateInfo(e) {
-    this.props.updateInfo({[e.target.name]:e.target.value})
+    this.props.update({[e.target.name]:e.target.value})
   }
 
   render() {
@@ -27,10 +27,10 @@ export default class Header extends Component {
       <div id="header">
         {edit ? (
           <>
-            <input name="name" placeholder='Name' onChange={this.updateInfo} value={name} />
-            <input name="phone" placeholder='Phone' onChange={this.updateInfo} value={phone} />
-            <input name="email" placeholder='Email' onChange={this.updateInfo} value={email} />
-            <button id="submit-header" onClick={this.editMode}>Save</button>
+            <input id="name"name="name" placeholder='Name' onChange={this.updateInfo} value={name} />
+            <input id="phone" name="phone" placeholder='Phone' onChange={this.updateInfo} value={phone} />
+            <input id="email" name="email" placeholder='Email' onChange={this.updateInfo} value={email} />
+            <button id="save-header" onClick={this.editMode}>Save</button>
           </>
         ) : (
           <>

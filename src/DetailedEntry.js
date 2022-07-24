@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import List from './List';
 import Bullet from './Bullet';
 
+/**
+ * A component that renders one or more data fields and contains a list of bullet 
+ * points.
+ */
 export default class DetailedEntry extends Component {
   constructor(props) {
     super(props);
