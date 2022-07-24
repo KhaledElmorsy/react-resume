@@ -11,19 +11,13 @@ export default class Bullet extends Component {
     this.input = React.createRef();
   }
 
-  static template = 'New item';
-
   editMode() {
     this.setState({ edit: !this.state.edit });
   }
 
   save() {
-    this.props.edit(this.input.current.value);
-    this.editMode();
-  }
-
-  updateField(field) {
-    return (value) => this.setState({ [field]: value });
+    const newItem = { bullet: this.input.current.value };
+    this.props.edit(newItem);
   }
 
   render() {
@@ -32,16 +26,17 @@ export default class Bullet extends Component {
       <div className="bullet">
         <li>
           {edit ? (
-            <>
-              <input ref={this.input} defaultValue={this.props.data}></input>
-              <button onClick={this.save}>save</button>
-            </>
+            <input
+              ref={this.input}
+              defaultValue={this.props.data.bullet}
+              onChange={this.save}
+            ></input>
           ) : (
-            <>
-              {this.props.data}
-              <button onClick={this.editMode}>edit</button>
-            </>
+            <span>
+              {this.props.data.bullet}
+            </span>
           )}
+          <button onClick={this.editMode}>{edit ? 'save' : 'edit'}</button>
           <button onClick={this.props.remove}>x</button>
         </li>
       </div>

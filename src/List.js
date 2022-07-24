@@ -1,6 +1,4 @@
-import uniqid from 'uniqid';
 import React, { Component } from 'react';
-import { toHaveStyle } from '@testing-library/jest-dom/dist/matchers';
 
 export default class List extends Component {
   constructor(props) {
@@ -17,14 +15,18 @@ export default class List extends Component {
   }
 
   add() {
-    this.props.update(this.data.concat(this.template));
+    const newItem = {};
+    for (let field in this.props.template) {
+      newItem[field] = this.props.template[field].default;
+    }
+    this.props.update(this.data.concat(newItem));
   }
 
   remove(i) {
     return () => {
       this.props.data.splice(i, 1);
       this.props.update(this.props.data);
-    }
+    };
   }
 
   edit(i) {
@@ -37,10 +39,10 @@ export default class List extends Component {
   render() {
     const data = this.props.data || [];
     const items = data.map((item, i) => (
-      <div className={this.component.name + '-list-item'}>
+      <div key={i} className={this.component.name + '-list-item'}>
         <this.component
-          key={uniqid() + i}
           data={item}
+          template={this.props.template}
           edit={this.edit(i)}
           remove={this.remove(i)}
         />
@@ -50,7 +52,7 @@ export default class List extends Component {
     return (
       <>
         {items}
-        <button onClick={() => this.add()}>Add {this.component.name}</button>
+        <button onClick={() => this.add()}>{this.props.button}</button>
       </>
     );
   }
