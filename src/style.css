@@ -72,8 +72,9 @@ input:hover {
     grid-template-areas: "school school start end"
                          "major . . ."
                          "minor . . ."
+                         "grade . . ."
                          "list list list list";
-    grid-template-rows: 40px 30px 30px auto;
+    grid-template-rows: 40px 30px 30px 30px auto;
     grid-template-columns: 1fr 1fr 120px 120px;
     padding-bottom: 10px;
     border-bottom: solid grey 1px;
@@ -88,6 +89,9 @@ input:hover {
 }
 #education .DetailedEntry [name="Minor"]{
     grid-area: minor;
+}
+#education .DetailedEntry [name="Grade"]{
+    grid-area: grade;
 }
 #education .DetailedEntry [name="Start Date"]{
     grid-area: start;

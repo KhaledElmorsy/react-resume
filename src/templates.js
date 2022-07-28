@@ -4,6 +4,7 @@ templates.education = {
   University: { default: '', type: 'text' },
   Major: { default: '', type: 'text' },
   Minor: { default: '', type: 'text' },
+  Grade: { default: '', type: 'text'},
   'Start Date': { default: '', type: 'date' },
   'End Date': { default: '', type: 'date' },
   list: { default: [] },
