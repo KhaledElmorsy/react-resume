@@ -53,7 +53,7 @@ export default class App extends Component {
               button='Add Experience'
             />
         </div>
-        <div key='technical-skills' id="skills">
+        <div key='technical-skills' className="skills" id="technical-skills">
           <h1>Technical Skills</h1>
             <List
               data={this.state.technicalSkills}
@@ -63,7 +63,7 @@ export default class App extends Component {
               button='+'
             />
         </div>
-        <div key='soft-skills' id="skills">
+        <div key='soft-skills' className="skills" id="soft-skills">
           <h1>Soft Skills</h1>
             <List
               data={this.state.softSkills}

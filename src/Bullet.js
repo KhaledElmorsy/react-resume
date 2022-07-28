@@ -14,16 +14,15 @@ export default class Bullet extends Component {
 
   render() {
     return (
-      <div className="bullet">
-        <li>
-            <input
-              ref={this.input}
-              defaultValue={this.props.data.bullet}
-              onChange={this.save}
-            ></input>
-          <button onClick={this.props.remove}>x</button>
-        </li>
-      </div>
+      <>
+        <span className='bullet-point'>{this.props.bullet || '○'}</span>
+        <input
+          ref={this.input}
+          defaultValue={this.props.data.bullet}
+          onChange={this.save}
+        ></input>
+        <button onClick={this.props.remove}>x</button>
+      </>
     );
   }
 }

@@ -1,0 +1,237 @@
+#root {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+input {
+    font-size: 18px;
+    border: none;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+input:hover {
+    outline: grey solid 0.5px;
+}
+
+.App {
+    width: 70%;
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px
+}
+
+#header {
+    width: 100%;
+    display: grid;
+    gap: 10px;
+    grid-template-areas: "name name" "phone email";
+}
+
+#name {
+    grid-area: name;
+    font-size: 3.5rem;
+    text-align: center;
+}
+#phone {
+    grid-area: phone;
+}
+#email {
+    grid-area: email;
+}
+#phone,#email {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#education {
+    padding-bottom: 20px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+}
+
+#education .DetailedEntry-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#education .DetailedEntry{
+    width: 100%;
+    display: grid;
+    grid-template-areas: "school school start end"
+                         "major . . ."
+                         "minor . . ."
+                         "list list list list";
+    grid-template-rows: 40px 30px 30px auto;
+    grid-template-columns: 1fr 1fr 120px 120px;
+    padding-bottom: 10px;
+    border-bottom: solid grey 1px;
+    gap: 5px;
+}
+#education .DetailedEntry input[name="University"]{
+    font-weight: bold;
+    grid-area: school;
+}
+#education .DetailedEntry [name="Major"]{
+    grid-area: major;
+}
+#education .DetailedEntry [name="Minor"]{
+    grid-area: minor;
+}
+#education .DetailedEntry [name="Start Date"]{
+    grid-area: start;
+}
+#education .DetailedEntry [name="End Date"]{
+    grid-area: end;
+}
+
+#education .DetailedEntry .Bullet-list{
+    grid-area: list;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    place-items: center;
+}
+
+
+#education>.DetailedEntry-list>button.add,
+#experience>.DetailedEntry-list>button.add,
+.DetailedEntry button.add{
+    display:none;
+}
+
+#education:hover>.DetailedEntry-list>button.add,
+#experience:hover>.DetailedEntry-list>button.add,
+.DetailedEntry:hover button.add{
+    display:block;
+}
+
+
+.Bullet-list input{
+    flex: 1;
+}
+
+.Bullet-list>button{
+    grid-column: 1 / 3;
+    width: 50px;
+}
+
+.Bullet button {
+    opacity: 0;
+}
+.Bullet:hover button{
+    opacity: 1;
+}
+
+.Bullet {
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+.Bullet .bullet-point {
+    margin-right: 10px;
+}
+
+
+#experience {
+    padding-bottom: 20px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+}
+
+#experience .DetailedEntry-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+#experience .DetailedEntry{
+    flex: 1;
+    height: fit-content;
+    width: 100%;
+    display: grid;
+    grid-template-areas: "company . start end"
+                         "position . location location"
+                         "list list list list";
+    grid-template-rows: 40px 30px auto;
+    grid-template-columns: 300px 1fr 120px 120px ;
+    row-gap: 10px;
+    column-gap: 5px;
+
+    padding-bottom: 10px;
+    border-bottom: solid 1px grey;
+}
+#experience .DetailedEntry input[name="Company"]{
+    grid-area: company;
+}
+#experience .DetailedEntry [name="Position"]{
+    grid-area: position;
+}
+#experience .DetailedEntry [name="Location"]{
+    grid-area: location;
+    width: 100%;
+}
+#experience .DetailedEntry [name="Start Date"]{
+    grid-area: start;
+}
+#experience .DetailedEntry [name="End Date"]{
+    grid-area: end;
+}
+#experience .DetailedEntry .Bullet-list{
+    grid-area: list;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+}
+
+#experience .DetailedEntry .Bullet{
+    width: 100%;
+}
+
+.skills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.skills .Bullet-list{
+    row-gap: 10px;
+    display: grid;
+    width: 100%;
+    place-items: center;
+    grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+}
+
+.skills .Bullet-list .Bullet{
+    display: flex;
+}
+
+.skills .Bullet-list .Bullet input {
+    font-size: 1.1rem;
+    flex: 1 0 100%;
+    width: 5700px;
+}
+
+.skills .Bullet-list button.add {
+    grid-column: 1 / 4;
+    width: 50px;
+    place-self: center;
+}

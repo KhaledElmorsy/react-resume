@@ -44,7 +44,7 @@ export default class List extends Component {
   render() {
     const data = this.props.data || [];
     const items = data.map((item, i) => (
-      <div key={i} className={this.component.name + '-list-item'}>
+      <div key={i} className={this.component.name}>
         <this.component
           data={item}
           template={this.props.template}
@@ -55,10 +55,10 @@ export default class List extends Component {
     ));
 
     return (
-      <>
+      <div className={this.component.name + '-list'}>
         {items}
-        <button onClick={() => this.add()}>{this.props.button}</button>
-      </>
+        <button className="add" onClick={() => this.add()}>{this.props.button}</button>
+      </div>
     );
   }
 }

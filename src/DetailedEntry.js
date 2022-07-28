@@ -13,6 +13,7 @@ export default class DetailedEntry extends Component {
     this.template = this.props.template;
     this.list = this.props.data.list;
 
+    this.save = this.save.bind(this)
     this.updateList = this.updateList.bind(this);
   }
 
@@ -39,6 +40,7 @@ export default class DetailedEntry extends Component {
               key={i}
               type={this.props.template[field].type}
               placeholder={field}
+              name={field}
               ref={(el) => (this.inputs[i] = { el, field })}
               defaultValue={value}
               onChange={this.save}
