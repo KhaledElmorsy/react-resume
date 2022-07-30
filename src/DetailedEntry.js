@@ -33,6 +33,7 @@ export default class DetailedEntry extends Component {
     const data = this.props.data;
     return (
       <>
+        <button className='remove' onClick={this.props.remove}>x</button>
         {Object.keys(data).map((field, i) => {
           const value = data[field];
           return value instanceof Array ? null : (
