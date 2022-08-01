@@ -1,28 +1,23 @@
-import React, { Component } from 'react';
+import React, { useRef } from 'react';
 
-export default class Bullet extends Component {
-  constructor(props) {
-    super(props);
-    this.save = this.save.bind(this);
-    this.input = React.createRef();
+export default function Bullet(props) {
+    const input = useRef();
+
+  function save () {
+    const newItem = { bullet: input.current.value };
+    props.edit(newItem);
   }
 
-  save() {
-    const newItem = { bullet: this.input.current.value };
-    this.props.edit(newItem);
-  }
-
-  render() {
     return (
       <>
-        <span className='bullet-point'>{this.props.bullet || '○'}</span>
+        <span className='bullet-point'>{props.bullet || '○'}</span>
         <input
-          ref={this.input}
-          defaultValue={this.props.data.bullet}
-          onChange={this.save}
+          ref={input}
+          defaultValue={props.data.bullet}
+          onChange={save}
         ></input>
-        <button onClick={this.props.remove}>x</button>
+        <button onClick={props.remove}>x</button>
       </>
     );
-  }
+
 }

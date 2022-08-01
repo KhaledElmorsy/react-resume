@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Bullet from './Bullet';
 import Header from './Header';
 import List from './List';
 import ListObj from './DetailedEntry';
 import templates from './templates';
 
-export default class App extends Component {
-  constructor() {
-    super();
+export default function App() {
     const cache = JSON.parse(localStorage.getItem('resume'));
-    this.state = cache || {
+    const [state, setState] = useState(cache || {
       name: '',
       email: '',
       phone: '',
@@ -17,65 +15,64 @@ export default class App extends Component {
       experience: [],
       technicalSkills: [],
       softSkills: [],
-    };
-
-    this.update = this.update.bind(this);
-  }
-
-  update(state) {
-    this.setState(state);
-    localStorage.setItem('resume', JSON.stringify(this.state));    
+    });
+    
+  function update(stateUpdate){
+    setState((prevState) => {
+      const newState = {...prevState, ...stateUpdate}
+      localStorage.setItem('resume', JSON.stringify(newState));
+      return newState
+    });
   }
   
-  updateField(field) {
-    return (value) => this.update({ [field]: value });
+  function updateField(field) {
+    return (value) => update({ [field]: value });
   }
 
-  render() {
-    return (
-      <div className="App">
-        <Header data={this.state} update={this.update} />
-        <div key="education" id="education">
-          <h1>Education</h1>
-          <List
-            data={this.state.education}
-            template={templates.education}
-            update={this.updateField('education')}
-            component={ListObj}
-            button="Add Education"
-          />
-        </div>
-        <div key="experience" id="experience">
-          <h1>Experience</h1>
-          <List
-            data={this.state.experience}
-            template={templates.experience}
-            update={this.updateField('experience')}
-            component={ListObj}
-            button="Add Experience"
-          />
-        </div>
-        <div key="technical-skills" className="skills" id="technical-skills">
-          <h1>Technical Skills</h1>
-          <List
-            data={this.state.technicalSkills}
-            template={templates.bullet}
-            update={this.updateField('technicalSkills')}
-            component={Bullet}
-            button="+"
-          />
-        </div>
-        <div key="soft-skills" className="skills" id="soft-skills">
-          <h1>Soft Skills</h1>
-          <List
-            data={this.state.softSkills}
-            template={templates.bullet}
-            update={this.updateField('softSkills')}
-            component={Bullet}
-            button="+"
-          />
-        </div>
+  return (
+    <div className="App">
+      <Header data={state} update={update} />
+      <div key="education" id="education">
+        <h1>Education</h1>
+        <List
+          data={state.education}
+          template={templates.education}
+          update={updateField('education')}
+          component={ListObj}
+          button="Add Education"
+        />
       </div>
-    );
-  }
+      <div key="experience" id="experience">
+        <h1>Experience</h1>
+        <List
+          data={state.experience}
+          template={templates.experience}
+          update={updateField('experience')}
+          component={ListObj}
+          button="Add Experience"
+        />
+      </div>
+      <div key="technical-skills" className="skills" id="technical-skills">
+        <h1>Technical Skills</h1>
+        <List
+          data={state.technicalSkills}
+          template={templates.bullet}
+          update={updateField('technicalSkills')}
+          component={Bullet}
+          button="+"
+        />
+      </div>
+      <div key="soft-skills" className="skills" id="soft-skills">
+        <h1>Soft Skills</h1>
+        <List
+          data={state.softSkills}
+          template={templates.bullet}
+          update={updateField('softSkills')}
+          component={Bullet}
+          button="+"
+        />
+      </div>
+    </div>
+  );
+
 }

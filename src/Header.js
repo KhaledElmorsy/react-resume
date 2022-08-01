@@ -1,40 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { edit: false };
-    this.updateInfo = this.updateInfo.bind(this);
+
+export default function Header(props) {
+
+  function updateInfo(e) {
+    props.update({ [e.target.id]: e.target.value });
   }
-
-  updateInfo(e) {
-    this.props.update({ [e.target.id]: e.target.value });
-  }
-
-  render() {
-    return (
+  
+  return (
       <div id="header">
         <input
           id="name"
           placeholder="Name"
-          onChange={this.updateInfo}
-          defaultValue={this.props.data.name}
+          onChange={updateInfo}
+          defaultValue={props.data.name}
         />
         <input
           id="phone"
           placeholder="Phone"
           type="tel"
-          onChange={this.updateInfo}
-          defaultValue={this.props.data.phone}
+          onChange={updateInfo}
+          defaultValue={props.data.phone}
         />
         <input
           id="email"
           placeholder="Email"
           type="email"
-          onChange={this.updateInfo}
-          defaultValue={this.props.data.email}
+          onChange={updateInfo}
+          defaultValue={props.data.email}
         />
       </div>
-    );
-  }
+  );
 }

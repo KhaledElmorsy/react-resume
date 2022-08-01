@@ -1,64 +1,53 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 /**
  * A component that renders an array of objects and handles adding, removing, and 
  * passing state updates for its children. The component to be used to render is injected 
  * as a property 
  */
-export default class List extends Component {
-  constructor(props) {
-    super(props);
-    this.component = this.props.component;
-    this.template = this.component.template;
-    this.edit = this.edit.bind(this);
-    this.remove = this.remove.bind(this);
-    this.data = this.props.data;
-  }
+export default function List(props) {
+ 
+    const Component = props.component;
+    const template = props.template;
+    let data = props.data;
 
-  componentDidUpdate() {
-    this.data = this.props.data;
-  }
-
-  add() {
+  function add () {
     const newItem = {};
-    for (let field in this.props.template) {
-      newItem[field] = this.props.template[field].default;
+    for (let field in template) {
+      newItem[field] = template[field].default;
     }
-    this.props.update(this.data.concat(newItem));
+    props.update(data.concat(newItem));
   }
 
-  remove(i) {
+  function remove(i) {
     return () => {
-      this.props.data.splice(i, 1);
-      this.props.update(this.props.data);
+      props.data.splice(i, 1);
+      props.update(props.data);
     };
   }
 
-  edit(i) {
+  function edit(i) {
     return (newValue) => {
-      this.props.data[i] = newValue;
-      this.props.update(this.props.data);
+      props.data[i] = newValue;
+      props.update(props.data);
     };
   }
 
-  render() {
-    const data = this.props.data || [];
-    const items = data.map((item, i) => (
-      <div key={i} className={this.component.name}>
-        <this.component
-          data={item}
-          template={this.props.template}
-          edit={this.edit(i)}
-          remove={this.remove(i)}
-        />
-      </div>
-    ));
+  const items = data.map((item, i) => (
+    <div key={i} className={Component.name}>
+      <Component
+        data={item}
+        template={template}
+        edit={edit(i)}
+        remove={remove(i)}
+      />
+    </div>
+  ));
 
-    return (
-      <div className={this.component.name + '-list'}>
-        {items}
-        <button className="add" onClick={() => this.add()}>{this.props.button}</button>
-      </div>
-    );
-  }
+  return (
+    <div className={Component.name + '-list'}>
+      {items}
+      <button className="add" onClick={() => add()}>{props.button}</button>
+    </div>
+  );
 }
