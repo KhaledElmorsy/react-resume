@@ -9,6 +9,7 @@ export default function List(props) {
  
     const Component = props.component;
     const template = props.template;
+    const className = props.name;
     let data = props.data;
 
   function add () {
@@ -34,7 +35,7 @@ export default function List(props) {
   }
 
   const items = data.map((item, i) => (
-    <div key={i} className={Component.name}>
+    <div key={i} className={className}>
       <Component
         data={item}
         template={template}
@@ -45,7 +46,7 @@ export default function List(props) {
   ));
 
   return (
-    <div className={Component.name + '-list'}>
+    <div className={className + '-list'}>
       {items}
       <button className="add" onClick={() => add()}>{props.button}</button>
     </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Bullet from './Bullet';
 import Header from './Header';
 import List from './List';
-import ListObj from './DetailedEntry';
+import DetailedEntry from './DetailedEntry';
 import templates from './templates';
 
 export default function App() {
@@ -38,7 +38,8 @@ export default function App() {
           data={state.education}
           template={templates.education}
           update={updateField('education')}
-          component={ListObj}
+          component={DetailedEntry}
+          name="DetailedEntry"
           button="Add Education"
         />
       </div>
@@ -48,7 +49,8 @@ export default function App() {
           data={state.experience}
           template={templates.experience}
           update={updateField('experience')}
-          component={ListObj}
+          component={DetailedEntry}
+          name="DetailedEntry"
           button="Add Experience"
         />
       </div>
@@ -59,6 +61,7 @@ export default function App() {
           template={templates.bullet}
           update={updateField('technicalSkills')}
           component={Bullet}
+          name="Bullet"
           button="+"
         />
       </div>
@@ -69,6 +72,7 @@ export default function App() {
           template={templates.bullet}
           update={updateField('softSkills')}
           component={Bullet}
+          name="Bullet"
           button="+"
         />
       </div>

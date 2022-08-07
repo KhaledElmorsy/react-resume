@@ -45,6 +45,7 @@ export default function DetailedEntry(props) {
       <List
         template={{bullet: {default: '', type: 'text'}}}
         component={Bullet}
+        name="Bullet"
         data={list}
         update={updateList}
         button='+'
